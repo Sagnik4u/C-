@@ -1,0 +1,24 @@
+import sqlite3
+
+# Connect to the database (or create if it doesn't exist)
+conn = sqlite3.connect('your_database.db')
+
+# Create a cursor
+cursor = conn.cursor()
+
+# Execute the SQL query to retrieve the desired columns
+query = "SELECT Title, Author, Published_Year FROM your_table_name;"
+cursor.execute(query)
+
+# Fetch all the results
+books = cursor.fetchall()
+
+# Print the results
+print("| {:<20} | {:<20} | {:<15} |".format("Title", "Author", "Published Year"))
+print("-" * 60)
+for book in books:
+    title, author, published_year = book
+    print("| {:<20} | {:<20} | {:<15} |".format(title, author, published_year))
+
+# Close the connection
+conn.close()
